@@ -3,9 +3,11 @@ cmake_minimum_required(VERSION 3.20.0)
 set(CMAKE_PREFIX_PATH "~/DEV/vcpkg/installed/arm64-osx/share/")
 set(MyVKProject_DIR_ROOT       ${CMAKE_CURRENT_LIST_DIR})
 set(MyVKProject_DIR_SOURCES    "${MyVKProject_DIR_ROOT}/src")
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 set(SHADER_OUTPUT_DIR "${CMAKE_BINARY_DIR}/shaders")
 set(SHADER_INPUT_DIR "${MyVKProject_DIR_ROOT}/Shaders")
-
 project(MyVKProject 
     LANGUAGES CXX C
 )
