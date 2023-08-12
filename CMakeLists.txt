@@ -85,3 +85,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE imgui::imgui)
 
 find_package(tinyobjloader CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE tinyobjloader::tinyobjloader)
+
+find_package(OpenAL CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE OpenAL::OpenAL "-framework OpenAL")

@@ -116,7 +116,7 @@ void FirstApp::run() {
       // render
       lveRenderer.beginSwapChainRenderPass(commandBuffer);
 
-      //
+      // Render example
       lveImgui.runExample();
 
       // order here matters
