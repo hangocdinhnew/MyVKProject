@@ -13,7 +13,7 @@ int main()
 }
 ```
 
-## The Vulkan Clone of "Myproject"
+## The Vulkan Clone of "MyProject"
 
 #### SPOILERS
 
