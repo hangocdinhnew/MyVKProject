@@ -9,9 +9,9 @@
 namespace lve {
 
 struct PipelineConfigInfo {
-  PipelineConfigInfo(const PipelineConfigInfo &) = delete;
   PipelineConfigInfo() = default;
-  PipelineConfigInfo &operator=(const PipelineConfigInfo &) = delete;
+  PipelineConfigInfo(const PipelineConfigInfo&) = delete;
+  PipelineConfigInfo& operator=(const PipelineConfigInfo&) = delete;
 
   VkPipelineViewportStateCreateInfo viewportInfo;
   VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
@@ -28,32 +28,34 @@ struct PipelineConfigInfo {
 };
 
 class LvePipeline {
-public:
-  LvePipeline(LveDevice &device, const std::string &vertFilepath,
-              const std::string &fragFilepath,
-              const PipelineConfigInfo &configInfo);
+ public:
+  LvePipeline(
+      LveDevice& device,
+      const std::string& vertFilepath,
+      const std::string& fragFilepath,
+      const PipelineConfigInfo& configInfo);
   ~LvePipeline();
 
-  LvePipeline(const LvePipeline &) = delete;
-  LvePipeline &operator=(const LvePipeline &) = delete;
+  LvePipeline(const LvePipeline&) = delete;
+  LvePipeline& operator=(const LvePipeline&) = delete;
 
   void bind(VkCommandBuffer commandBuffer);
 
-  static void defaultPipelineConfigInfo(PipelineConfigInfo &configInfo);
+  static void defaultPipelineConfigInfo(PipelineConfigInfo& configInfo);
 
-private:
-  static std::vector<char> readFile(const std::string &filepath);
+ private:
+  static std::vector<char> readFile(const std::string& filepath);
 
-  void createGraphicsPipeline(const std::string &vertFilepath,
-                              const std::string &fragFilepath,
-                              const PipelineConfigInfo &configInfo);
+  void createGraphicsPipeline(
+      const std::string& vertFilepath,
+      const std::string& fragFilepath,
+      const PipelineConfigInfo& configInfo);
 
-  void createShaderModule(const std::vector<char> &code,
-                          VkShaderModule *shaderModule);
+  void createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule);
 
-  LveDevice &lveDevice;
+  LveDevice& lveDevice;
   VkPipeline graphicsPipeline;
   VkShaderModule vertShaderModule;
   VkShaderModule fragShaderModule;
 };
-} // namespace lve
+}  // namespace lve

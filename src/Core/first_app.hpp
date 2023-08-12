@@ -11,7 +11,7 @@
 
 namespace lve {
 class FirstApp {
-public:
+ public:
   static constexpr int WIDTH = 800;
   static constexpr int HEIGHT = 600;
 
@@ -23,7 +23,7 @@ public:
 
   void run();
 
-private:
+ private:
   void loadGameObjects();
 
   LveWindow lveWindow{WIDTH, HEIGHT, "Vulkan Tutorial"};
@@ -32,4 +32,4 @@ private:
 
   std::vector<LveGameObject> gameObjects;
 };
-} // namespace lve
+}  // namespace lve

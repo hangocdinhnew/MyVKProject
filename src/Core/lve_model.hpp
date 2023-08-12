@@ -12,15 +12,13 @@
 
 namespace lve {
 class LveModel {
-public:
+ public:
   struct Vertex {
-    glm::vec2 position;
-    glm::vec3 color;
+    glm::vec3 position{};
+    glm::vec3 color{};
 
-    static std::vector<VkVertexInputBindingDescription>
-    getBindingDescriptions();
-    static std::vector<VkVertexInputAttributeDescription>
-    getAttributeDescriptions();
+    static std::vector<VkVertexInputBindingDescription> getBindingDescriptions();
+    static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
   };
 
   LveModel(LveDevice &device, const std::vector<Vertex> &vertices);
@@ -32,7 +30,7 @@ public:
   void bind(VkCommandBuffer commandBuffer);
   void draw(VkCommandBuffer commandBuffer);
 
-private:
+ private:
   void createVertexBuffers(const std::vector<Vertex> &vertices);
 
   LveDevice &lveDevice;
@@ -40,4 +38,4 @@ private:
   VkDeviceMemory vertexBufferMemory;
   uint32_t vertexCount;
 };
-} // namespace lve
+}  // namespace lve

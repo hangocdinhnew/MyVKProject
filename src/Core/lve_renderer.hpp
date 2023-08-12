@@ -11,27 +11,23 @@
 
 namespace lve {
 class LveRenderer {
-public:
+ public:
   LveRenderer(LveWindow &window, LveDevice &device);
   ~LveRenderer();
 
   LveRenderer(const LveRenderer &) = delete;
   LveRenderer &operator=(const LveRenderer &) = delete;
 
-  VkRenderPass getSwapChainRenderPass() const {
-    return lveSwapChain->getRenderPass();
-  }
+  VkRenderPass getSwapChainRenderPass() const { return lveSwapChain->getRenderPass(); }
   bool isFrameInProgress() const { return isFrameStarted; }
 
   VkCommandBuffer getCurrentCommandBuffer() const {
-    assert(isFrameStarted &&
-           "Cannot get command buffer when frame not in progress");
+    assert(isFrameStarted && "Cannot get command buffer when frame not in progress");
     return commandBuffers[currentFrameIndex];
   }
 
   int getFrameIndex() const {
-    assert(isFrameStarted &&
-           "Cannot get frame index when frame not in progress");
+    assert(isFrameStarted && "Cannot get frame index when frame not in progress");
     return currentFrameIndex;
   }
 
@@ -40,7 +36,7 @@ public:
   void beginSwapChainRenderPass(VkCommandBuffer commandBuffer);
   void endSwapChainRenderPass(VkCommandBuffer commandBuffer);
 
-private:
+ private:
   void createCommandBuffers();
   void freeCommandBuffers();
   void recreateSwapChain();
@@ -51,7 +47,7 @@ private:
   std::vector<VkCommandBuffer> commandBuffers;
 
   uint32_t currentImageIndex;
-  int currentFrameIndex;
-  bool isFrameStarted;
+  int currentFrameIndex{0};
+  bool isFrameStarted{false};
 };
-} // namespace lve
+}  // namespace lve

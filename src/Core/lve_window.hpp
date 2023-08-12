@@ -1,4 +1,3 @@
-
 #pragma once
 
 #define GLFW_INCLUDE_VULKAN
@@ -8,7 +7,7 @@
 namespace lve {
 
 class LveWindow {
-public:
+ public:
   LveWindow(int w, int h, std::string name);
   ~LveWindow();
 
@@ -16,17 +15,14 @@ public:
   LveWindow &operator=(const LveWindow &) = delete;
 
   bool shouldClose() { return glfwWindowShouldClose(window); }
-  VkExtent2D getExtent() {
-    return {static_cast<uint32_t>(width), static_cast<uint32_t>(height)};
-  }
+  VkExtent2D getExtent() { return {static_cast<uint32_t>(width), static_cast<uint32_t>(height)}; }
   bool wasWindowResized() { return framebufferResized; }
   void resetWindowResizedFlag() { framebufferResized = false; }
 
   void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
 
-private:
-  static void framebufferResizeCallback(GLFWwindow *window, int width,
-                                        int height);
+ private:
+  static void framebufferResizeCallback(GLFWwindow *window, int width, int height);
   void initWindow();
 
   int width;
@@ -36,4 +32,4 @@ private:
   std::string windowName;
   GLFWwindow *window;
 };
-} // namespace lve
+}  // namespace lve
