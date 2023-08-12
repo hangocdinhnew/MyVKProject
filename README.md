@@ -46,7 +46,11 @@ int main()
 
 #### Now for the Credits section:
 Special thanks to Khronos Group for making MoltenVK
+
 Thanks to @BrendanGalea for Vulkan tutorials and github project
+
 Thanks to GLFW team for working with Vulkan
+
 Thanks to ocournut creating Imgui
+
 and so much more people for making this project possible.
