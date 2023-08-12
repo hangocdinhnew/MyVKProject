@@ -5,7 +5,6 @@
 #include <iostream>
 #include <set>
 #include <unordered_set>
-#include <vulkan/vulkan_core.h>
 
 namespace lve {
 

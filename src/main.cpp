@@ -1,4 +1,4 @@
-#include "Core/first_app.hpp"
+#include "Core/Graphics/first_app.hpp"
 
 // Standard Libs
 #include <cstdlib>

@@ -7,7 +7,10 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 set(SHADER_OUTPUT_DIR "${CMAKE_BINARY_DIR}/shaders")
-set(SHADER_INPUT_DIR "${MyVKProject_DIR_ROOT}/Shaders")
+set(SHADER_INPUT_DIR "${MyVKProject_DIR_ROOT}/Resources/Shaders")
+set(MODEL_INPUT_DIR "${MyVKProject_DIR_ROOT}/Resources/Models")
+set(MODEL_OUTPUT_DIR "${CMAKE_BINARY_DIR}/models")
+
 project(MyVKProject 
     LANGUAGES CXX C
 )
@@ -43,10 +46,30 @@ add_custom_target(
     DEPENDS ${SHADER_OUTPUTS}
 )
 
+# Models
+# Create the destination directory in the build directory
+add_custom_command(
+    OUTPUT ${MODEL_OUTPUT_DIR}
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${MODEL_OUTPUT_DIR}
+)
+
+# Copy the directory and its contents using a custom target
+add_custom_target(CopyModels
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${MODEL_INPUT_DIR} ${MODEL_OUTPUT_DIR}
+    DEPENDS ${MODEL_OUTPUT_DIR}
+) 
+
+
 add_executable(
     ${PROJECT_NAME}
     ${MyVKProject_SOURCES}
 )
+
+add_dependencies(
+    ${PROJECT_NAME}
+    CopyModels
+)
+
 
 find_package(Vulkan REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Vulkan::Vulkan)
@@ -59,3 +82,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)
 
 find_package(imgui CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE imgui::imgui)
+
+find_package(tinyobjloader CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE tinyobjloader::tinyobjloader)
