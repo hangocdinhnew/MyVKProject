@@ -29,8 +29,9 @@ void FirstApp::run() {
 }
 
 void FirstApp::loadModels() {
-  std::vector<LveModel::Vertex> vertices{
-      {{0.0f, -0.5f}}, {{0.5f, 0.5f}}, {{-0.5f, 0.5f}}};
+  std::vector<LveModel::Vertex> vertices{{{0.0f, -0.5f}, {1.0f, 0.0f, 0.0f}},
+                                         {{0.5f, 0.5f}, {0.0f, 1.0f, 0.0f}},
+                                         {{-0.5f, 0.5f}, {0.0f, 0.0f, 1.0f}}};
   lveModel = std::make_unique<LveModel>(lveDevice, vertices);
 }
 
@@ -97,8 +98,6 @@ void FirstApp::createCommandBuffers() {
                          VK_SUBPASS_CONTENTS_INLINE);
 
     lvePipeline->bind(commandBuffers[i]);
-    lveModel->bind(commandBuffers[i]);
-    lveModel->draw(commandBuffers[i]);
 
     vkCmdEndRenderPass(commandBuffers[i]);
     if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {
