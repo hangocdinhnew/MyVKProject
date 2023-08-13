@@ -1,3 +1,6 @@
 [submodule "soloud"]
 	path = soloud
 	url = https://github.com/jarikomppa/soloud
+[submodule "ImGuiColorTextEdit"]
+	path = ImGuiColorTextEdit
+	url = https://github.com/BalazsJako/ImGuiColorTextEdit/

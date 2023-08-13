@@ -1,10 +1,13 @@
 #pragma once
 
+#include "../../../soloud/include/soloud.h"
+#include "../../../soloud/include/soloud_wav.h"
 #include "lve_descriptors.hpp"
 #include "lve_device.hpp"
 #include "lve_game_object.hpp"
 #include "lve_renderer.hpp"
 #include "lve_window.hpp"
+
 // std
 #include <memory>
 #include <vector>
@@ -33,5 +36,11 @@ private:
   // note: order of declarations matters
   std::unique_ptr<LveDescriptorPool> globalPool{};
   LveGameObject::Map gameObjects;
+
+  // Definitions of Soloud variables
+  SoLoud::Soloud soloud; // Engine core
+  SoLoud::Wav egg1;
+  SoLoud::Wav sound1;
+  SoLoud::Wav sound2;
 };
 } // namespace lve
