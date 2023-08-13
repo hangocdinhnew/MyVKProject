@@ -59,6 +59,9 @@ add_custom_target(CopyModels
     DEPENDS ${MODEL_OUTPUT_DIR}
 ) 
 
+# Soloud
+add_subdirectory("soloud/contrib/")
+
 
 add_executable(
     ${PROJECT_NAME}
