@@ -91,3 +91,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE tinyobjloader::tinyobjloader)
 
 find_package(OpenAL CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE OpenAL::OpenAL "-framework OpenAL")
+
+# this is heuristically generated, and may not be correct
+find_package(OpenCV CONFIG REQUIRED)
+# note: 13 additional targets are not displayed.
+target_link_libraries(${PROJECT_NAME} PRIVATE opencv_ml tegra_hal opencv_dnn opencv_core)

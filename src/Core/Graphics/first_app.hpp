@@ -26,6 +26,19 @@ public:
 
   void run();
 
+  // Definitions of Soloud variables
+  SoLoud::Soloud soloud; // Engine core
+  SoLoud::Wav egg1;
+  SoLoud::Wav sound1;
+  SoLoud::Wav sound2;
+
+  // States
+  bool show_demo_window = true;
+  bool show_another_window = false;
+  bool show_text_editor = false;
+  bool show_camera_window = true;
+  bool enable_camera = true;
+
 private:
   void loadGameObjects();
 
@@ -36,11 +49,5 @@ private:
   // note: order of declarations matters
   std::unique_ptr<LveDescriptorPool> globalPool{};
   LveGameObject::Map gameObjects;
-
-  // Definitions of Soloud variables
-  SoLoud::Soloud soloud; // Engine core
-  SoLoud::Wav egg1;
-  SoLoud::Wav sound1;
-  SoLoud::Wav sound2;
 };
 } // namespace lve
