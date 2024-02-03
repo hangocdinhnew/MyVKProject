@@ -39,10 +39,8 @@ int main()
 
 - [ ] Finish Project.
 - [ ] Make a finished editor.
-- [ ] Use ImGui and OpenGL.
+- [ ] Use MyProject as an example to easily finish up this project.
 - [ ] Add License.
-- [ ] Support for VScode.
-- [ ] Support OpenAL-Software.
 
 #### Now for the Credits section:
 Special thanks to Khronos Group for making MoltenVK
