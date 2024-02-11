@@ -11,34 +11,34 @@ set(SHADER_INPUT_DIR "${MyVKProject_DIR_ROOT}/Resources/Shaders")
 set(MODEL_INPUT_DIR "${MyVKProject_DIR_ROOT}/Resources/Models")
 set(MODEL_OUTPUT_DIR "${CMAKE_BINARY_DIR}/models")
 
-project(MyVKProject 
+project(MyVKProject
     LANGUAGES CXX C
 )
 
 # Sources
 macro(MyVKProject_FILES_APPEND)
-    file(GLOB_RECURSE FILES_APPEND CONFIGURE_DEPENDS ${ARGV})
-    list(APPEND MyVKProject_SOURCES ${FILES_APPEND})
+  file(GLOB_RECURSE FILES_APPEND CONFIGURE_DEPENDS ${ARGV})
+  list(APPEND MyVKProject_SOURCES ${FILES_APPEND})
 endmacro()
 macro(MyVKProject_SOURCES_APPEND)
-    MyVKProject_FILES_APPEND(${ARGV0}/*.h)
-    MyVKProject_FILES_APPEND(${ARGV0}/*.cpp)
+  MyVKProject_FILES_APPEND(${ARGV0}/*.h)
+  MyVKProject_FILES_APPEND(${ARGV0}/*.cpp)
 endmacro()
 
 MyVKProject_SOURCES_APPEND(${MyVKProject_DIR_SOURCES})
 
 # Shaders
-## Compile shaders
+# # Compile shaders
 file(GLOB_RECURSE SHADER_SOURCES "${SHADER_INPUT_DIR}/*.frag" "${SHADER_INPUT_DIR}/*.vert")
 foreach(SHADER_SOURCE ${SHADER_SOURCES})
-    get_filename_component(SHADER_NAME ${SHADER_SOURCE} NAME)
-    set(SHADER_OUTPUT "${SHADER_OUTPUT_DIR}/${SHADER_NAME}.spv")
-    add_custom_command(
+  get_filename_component(SHADER_NAME ${SHADER_SOURCE} NAME)
+  set(SHADER_OUTPUT "${SHADER_OUTPUT_DIR}/${SHADER_NAME}.spv")
+  add_custom_command(
         OUTPUT ${SHADER_OUTPUT}
         COMMAND glslc ${SHADER_SOURCE} -o ${SHADER_OUTPUT}
         DEPENDS ${SHADER_SOURCE}
     )
-    list(APPEND SHADER_OUTPUTS ${SHADER_OUTPUT})
+  list(APPEND SHADER_OUTPUTS ${SHADER_OUTPUT})
 endforeach()
 
 add_custom_target(
@@ -57,7 +57,7 @@ add_custom_command(
 add_custom_target(CopyModels
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${MODEL_INPUT_DIR} ${MODEL_OUTPUT_DIR}
     DEPENDS ${MODEL_OUTPUT_DIR}
-) 
+)
 
 # Soloud
 add_subdirectory("soloud/contrib/")
@@ -89,10 +89,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE imgui::imgui)
 find_package(tinyobjloader CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE tinyobjloader::tinyobjloader)
 
-find_package(OpenAL CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE OpenAL::OpenAL "-framework OpenAL")
-
-# this is heuristically generated, and may not be correct
 find_package(OpenCV CONFIG REQUIRED)
 # note: 13 additional targets are not displayed.
 target_link_libraries(${PROJECT_NAME} PRIVATE opencv_ml tegra_hal opencv_dnn opencv_core)
+
+find_package(ZLIB REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB)
